@@ -1,0 +1,41 @@
+{
+  "name": "credit-card-processing",
+  "version": "1.0.0",
+  "description": "inversify with expressjs",
+  "author": "Eugene-Murray",
+  "license": "MIT",
+  "scripts": {
+    "test": "nyc --clean --all --require ts-node/register --require reflect-metadata/Reflect --extension .ts -- mocha --exit --timeout 5000",
+    "test:all": "npm test **/*.spec.ts"
+  },
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "helmet": "3.9.0",
+    "inversify": "4.5.1",
+    "inversify-binding-decorators": "3.0.0",
+    "inversify-express-utils": "4.2.2",
+    "inversify-logger-middleware": "3.1.0",
+    "morgan": "1.9.0",
+    "reflect-metadata": "0.1.10"
+  },
+  "devDependencies": {
+    "@types/bluebird": "3.5.18",
+    "@types/body-parser": "1.16.8",
+    "@types/chai": "4.0.4",
+    "@types/express": "4.0.39",
+    "@types/mocha": "2.2.44",
+    "@types/helmet": "0.0.37",
+    "@types/morgan": "1.7.35",
+    "chai": "4.1.2",
+    "mocha": "4.0.1",
+    "nyc": "11.3.0",
+    "ts-node": "7.0.1",
+    "typescript": "3.1.1"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.ts"
+    ]
+  }
+}
