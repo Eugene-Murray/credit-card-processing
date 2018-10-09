@@ -1,25 +1,29 @@
-// import { expect } from 'chai';
-// import { UserController } from '../../controller/user';
-// import { UserService } from '../../service/user';
+import { expect } from 'chai';
+//import { CreditCard } from './../../models/creditCard';
+import { Repository } from './../../data/repository';
 
-// describe('UserController', () => {
-//   let controller;
+describe('Repository', () => {
+  let repository;
 
-//   beforeEach(() => {
-//     controller = new UserController(new UserService());
-//   });
+  beforeEach(() => {
+    repository = new Repository();
+  });
 
-//   it('should get back all user', () => {
-//     expect(controller.getUsers()).to.deep.equal(
-//       [{
-//         email: 'lorem@ipsum.com',
-//         name: 'Lorem'
-//       }, {
-//           email: 'doloe@sit.com',
-//           name: 'Dolor'
-//         }]
-//     );
-//   });
+  it('should get back all pre-populated credit cards', () => {
+    repository.getAll().then((data) => {
+        expect(data).to.deep.equal(
+            [{
+              name: 'Eugene Murray 1',
+              cardNumber: '123',
+              limit: 2000
+            }, {
+                email: 'Eugene Murray 2',
+                name: '321',
+                limit: 4000
+              }]
+          );
+    });
+  });
 
 //   it('should give back the right user', () => {
 //     expect(controller.getUser({
@@ -69,4 +73,4 @@
 //     })).to.equal('Lorem');
 //     expect(controller.getUsers()).to.have.length(1);
 //   });
-// });
+});

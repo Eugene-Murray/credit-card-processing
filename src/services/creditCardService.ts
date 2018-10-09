@@ -10,58 +10,20 @@ export class CreditCardService {
     constructor(@inject(TYPES.ValidationService) private validationService: ValidationService,
         @inject(TYPES.Repository) private repository: Repository) { }
     
-    public get(): string {
-        return "xx";
-    }
-
-    public async getAll(): Promise<Array<CreditCard>> {
+    public async getAllAsync(): Promise<Array<CreditCard>> {
         return await this.repository.getAll();
     }
 
-    public add(creditCard: CreditCard): void {
+    public addAsync(creditCard: CreditCard): void {
         console.warn(this.validationService.get());
         this.repository.add(creditCard);
     }
 
-//   public getUsers(): IUser[] {
-//     return this.userStorage;
-//   }
+    public changeAsync(): void {
 
-//   public getUser(id: string): IUser {
-//     let result: IUser;
-//     this.userStorage.map(user => {
-//       if (user.name === id) {
-//         result = user;
-//       }
-//     });
+    }
 
-//     return result;
-//   }
-
-//   public newUser(user: IUser): IUser {
-//     this.userStorage.push(user);
-//     return user;
-//   }
-
-//   public updateUser(id: string, user: IUser): IUser {
-//     this.userStorage.map((entry, index) => {
-//       if (entry.name === id) {
-//         this.userStorage[index] = user;
-//       }
-//     });
-
-//     return user;
-//   }
-
-//   public deleteUser(id: string): string {
-//     let updatedUser: IUser[] = [];
-//     this.userStorage.map(user => {
-//       if (user.name !== id) {
-//         updatedUser.push(user);
-//       }
-//     });
-
-//     this.userStorage = updatedUser;
-//     return id;
-//   }
+    public creditAsync(): void {
+        
+    }
 }
