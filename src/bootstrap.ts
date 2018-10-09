@@ -14,7 +14,7 @@ let container = new Container();
 container.bind<interfaces.Controller>(TYPE.Controller).to(CreditCardController).whenTargetNamed(TAGS.CreditCardController);
 container.bind<CreditCardService>(TYPES.CreditCardService).to(CreditCardService);
 container.bind<ValidationService>(TYPES.ValidationService).to(ValidationService);
-container.bind<Repository>(TYPES.Repository).to(Repository);
+container.bind<Repository>(TYPES.Repository).to(Repository).inSingletonScope();
 
 let server = new InversifyExpressServer(container);
 

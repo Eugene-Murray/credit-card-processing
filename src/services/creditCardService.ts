@@ -1,11 +1,26 @@
-import { injectable } from 'inversify';
-
+import { injectable, inject } from 'inversify';
+import { CreditCard } from './../models/creditCard';
+import { ValidationService } from '../services/validationService';
+import { Repository } from '../data/repository';
+import TYPES from '../constants/types';
 
 @injectable()
 export class CreditCardService {
 
+    constructor(@inject(TYPES.ValidationService) private validationService: ValidationService,
+        @inject(TYPES.Repository) private repository: Repository) { }
+    
     public get(): string {
         return "xx";
+    }
+
+    public getAll(): Array<CreditCard> {
+        return this.repository.getAll();
+    }
+
+    public add(creditCard: CreditCard): void {
+        console.warn(this.validationService.get());
+        this.repository.add(creditCard);
     }
 
 //   public getUsers(): IUser[] {

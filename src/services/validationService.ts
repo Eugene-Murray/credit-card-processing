@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-
+import { CreditCard } from './../models/creditCard';
 
 @injectable()
 export class ValidationService {
@@ -8,45 +8,26 @@ export class ValidationService {
         return "xx";
     }
 
-//   public getUsers(): IUser[] {
-//     return this.userStorage;
-//   }
+    public validCreditCard(creditCard: CreditCard) : boolean {
+        // Accept only digits, dashes or spaces
+        if (/[^0-9-\s]+/.test(creditCard.cardNumber)) return false;
 
-//   public getUser(id: string): IUser {
-//     let result: IUser;
-//     this.userStorage.map(user => {
-//       if (user.name === id) {
-//         result = user;
-//       }
-//     });
+        // Luhn Algorithm
+        let nCheck = 0; 
+        let bEven = false;
 
-//     return result;
-//   }
+        creditCard.cardNumber = creditCard.cardNumber.replace(/\D/g, "");
 
-//   public newUser(user: IUser): IUser {
-//     this.userStorage.push(user);
-//     return user;
-//   }
+        for (var n = creditCard.cardNumber.length - 1; n >= 0; n--) {
+            let cDigit = creditCard.cardNumber.charAt(n);
+            let nDigit = parseInt(cDigit, 10);
+            if (bEven) {
+                if ((nDigit *= 2) > 9) nDigit -= 9;
+            }
+            nCheck += nDigit;
+            bEven = !bEven;
+        }
 
-//   public updateUser(id: string, user: IUser): IUser {
-//     this.userStorage.map((entry, index) => {
-//       if (entry.name === id) {
-//         this.userStorage[index] = user;
-//       }
-//     });
-
-//     return user;
-//   }
-
-//   public deleteUser(id: string): string {
-//     let updatedUser: IUser[] = [];
-//     this.userStorage.map(user => {
-//       if (user.name !== id) {
-//         updatedUser.push(user);
-//       }
-//     });
-
-//     this.userStorage = updatedUser;
-//     return id;
-//   }
+        return (nCheck % 10) == 0;
+    }
 }
