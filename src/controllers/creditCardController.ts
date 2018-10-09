@@ -6,6 +6,7 @@ import { CreditCardService } from '../services/creditCardService';
 import { Request, Response } from 'express';
 import TYPES from '../constants/types';
 import { CreditCard } from './../models/creditCard';
+import { Balance } from '../models/balance';
 
 @injectable()
 @controller('/api/creditcard')
@@ -21,7 +22,7 @@ export class CreditCardController {
   @httpPost('/')
   public add(request: Request, response: Response) {
     try {
-      this.creditCardService.addAsync(new CreditCard(request.body.name, request.body.cardNumber, request.body.limit, request.body.limit));
+      this.creditCardService.add(new CreditCard(request.body.name, request.body.cardNumber, request.body.limit, request.body.limit));
       response.status(200).send("Credit Card Successfully Created");
     } catch(err) {
       console.error(err);
@@ -31,18 +32,13 @@ export class CreditCardController {
   }
 
   @httpPut('/change/:name')
-  public change(request: Request): CreditCard {
-    console.warn(request.body);
-    return request.params.name;
-
-    //this.creditCardService.changeAsync();
+  public async change(request: Request): Promise<Balance> {
+    return await this.creditCardService.chargeAsync(request.body.name, request.body.amount);
   }
 
   @httpPut('/credit/:name')
-  public credit(request: Request): CreditCard {
+  public async credit(request: Request): Promise<Balance> {
     console.warn(request.body);
-    return request.params.name;
-
-    //this.creditCardService.creditAsync();
+    return await this.creditCardService.creditAsync(request.body.name, request.body.amount);
   }
 }

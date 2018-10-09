@@ -9,7 +9,7 @@ describe('Repository', () => {
     repository = new Repository();
   });
 
-  it('should get back all pre-populated credit cards', () => {
+  it('should get back all pre-populated credit cards success', () => {
     repository.getAll().then((data) => {
         expect(data).to.deep.equal(
             [{
@@ -22,6 +22,19 @@ describe('Repository', () => {
                 limit: 4000
               }]
           );
+    });
+  });
+
+  it('should find credit card by name', () => {
+    let name: string = "Eugene Murray 2";
+    repository.getByName(name).then((data) => {
+      expect(data).to.deep.equal(
+        {
+            email: 'Eugene Murray 2',
+            name: '321',
+            limit: 4000
+        }
+      );
     });
   });
 });
