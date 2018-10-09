@@ -3,11 +3,7 @@ import { CreditCard } from './../models/creditCard';
 
 @injectable()
 export class ValidationService {
-
-    public get(): string {
-        return "xx";
-    }
-
+    
     public validCreditCard(creditCard: CreditCard) : boolean {
         // Accept only digits, dashes or spaces
         if (/[^0-9-\s]+/.test(creditCard.cardNumber)) return false;

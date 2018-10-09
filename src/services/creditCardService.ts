@@ -15,8 +15,14 @@ export class CreditCardService {
     }
 
     public addAsync(creditCard: CreditCard): void {
-        console.warn(this.validationService.get());
-        this.repository.add(creditCard);
+        if(this.validationService.validCreditCard(creditCard))
+        {
+            this.repository.add(creditCard);
+        }
+        else
+        {
+            throw Error("Card is not valid");
+        }
     }
 
     public changeAsync(): void {

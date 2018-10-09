@@ -3,7 +3,7 @@ import {
 } from 'inversify-express-utils';
 import { injectable, inject } from 'inversify';
 import { CreditCardService } from '../services/creditCardService';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import TYPES from '../constants/types';
 import { CreditCard } from './../models/creditCard';
 
@@ -19,8 +19,15 @@ export class CreditCardController {
   }
 
   @httpPost('/')
-  public add(request: Request): void {
-    this.creditCardService.addAsync(new CreditCard(request.body.name, request.body.cardNumber, request.body.limit));
+  public add(request: Request, response: Response) {
+    try {
+      this.creditCardService.addAsync(new CreditCard(request.body.name, request.body.cardNumber, request.body.limit, request.body.limit));
+      response.status(200).send("Credit Card Successfully Created");
+    } catch(err) {
+      console.error(err);
+      response.status(500).send(err.message);
+    }
+    
   }
 
   @httpPut('/change/:name')

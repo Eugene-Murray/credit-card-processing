@@ -1,16 +1,56 @@
-// import { expect } from 'chai';
-// import { UserController } from '../../controller/user';
-// import { UserService } from '../../service/user';
+import { expect } from 'chai';
+import { ValidationService } from './../../services/validationService';
 
-// describe('UserController', () => {
-//   let controller;
 
-//   beforeEach(() => {
-//     controller = new UserController(new UserService());
-//   });
+describe('ValidationService', () => {
+  let validationService;
+
+  beforeEach(() => {
+    validationService = new ValidationService();
+  });
+
+//   [
+//     {
+//         "name": "Eugene Murray 1",
+//         "cardNumber": "123",
+//         "limit": 2000,
+//         "balance": 0
+//     },
+//     {
+//         "name": "Eugene Murray 2",
+//         "cardNumber": "321",
+//         "limit": 4000,
+//         "balance": 0
+//     },
+//     {
+//         "name": "Eugene1",
+//         "cardNumber": "6771771771771771774",
+//         "limit": 4,
+//         "balance": 4
+//     },
+//     {
+//         "name": "Eugene1",
+//         "cardNumber": "5126870832570869",
+//         "limit": 4,
+//         "balance": 4
+//     },
+//     {
+//         "name": "Eugene1",
+//         "cardNumber": "4941202229355074",
+//         "limit": 4,
+//         "balance": 4
+//     },
+//     {
+//         "name": "Eugene1",
+//         "cardNumber": "4941202229355074",
+//         "limit": 4,
+//         "balance": 4
+//     }
+// ]
+
 
 //   it('should get back all user', () => {
-//     expect(controller.getUsers()).to.deep.equal(
+//     expect(validationService.validCreditCard()).to.deep.equal(
 //       [{
 //         email: 'lorem@ipsum.com',
 //         name: 'Lorem'
@@ -20,53 +60,4 @@
 //         }]
 //     );
 //   });
-
-//   it('should give back the right user', () => {
-//     expect(controller.getUser({
-//       params: {
-//         id: 'Lorem'
-//       }
-//     })).to.deep.equal({
-//       email: 'lorem@ipsum.com',
-//       name: 'Lorem'
-//     });
-//   });
-
-//   it('should add a new user', () => {
-//     expect(controller.getUsers()).to.have.length(2);
-//     expect(controller.newUser({
-//       body: {
-//         email: 'test@test.com',
-//         name: 'test'
-//       }
-//     })).to.deep.equal({
-//       email: 'test@test.com',
-//       name: 'test'
-//     });
-//     expect(controller.getUsers()).to.have.length(3);
-//   });
-
-//   it('should update a existing user', () => {
-//     expect(controller.updateUser({
-//       body: {
-//         email: 'changed@changed.com',
-//         name: 'Lorem'
-//       }, params: {
-//         id: 'Lorem'
-//       }
-//     })).to.deep.equal({
-//       email: 'changed@changed.com',
-//       name: 'Lorem'
-//     });
-//   });
-
-//   it('should delete a user', () => {
-//     expect(controller.getUsers()).to.have.length(2);
-//     expect(controller.deleteUser({
-//       params: {
-//         id: 'Lorem'
-//       }
-//     })).to.equal('Lorem');
-//     expect(controller.getUsers()).to.have.length(1);
-//   });
-// });
+});
