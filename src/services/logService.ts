@@ -14,8 +14,8 @@ export class CreditCardService {
         return "xx";
     }
 
-    public async getAll(): Promise<Array<CreditCard>> {
-        return await this.repository.getAll();
+    public getAll(): Array<CreditCard> {
+        return this.repository.getAll();
     }
 
     public add(creditCard: CreditCard): void {

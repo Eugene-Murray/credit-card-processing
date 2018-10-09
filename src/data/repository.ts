@@ -1,5 +1,5 @@
 
-import { injectable} from 'inversify';
+import { injectable } from 'inversify';
 import { CreditCard } from './../models/creditCard';
 
 
@@ -14,11 +14,13 @@ export class Repository {
     }
 
     public add(creditCard: CreditCard): void {
-      this.CreditCardDB.push(creditCard);
+        this.CreditCardDB.push(creditCard);
     }
 
-    public getAll(): Array<CreditCard> {
-        return this.CreditCardDB;
+    public getAll(): Promise<Array<CreditCard>> {
+        return new Promise<Array<CreditCard>>((resolve, reject) => {
+            resolve(this.CreditCardDB);
+        });
     }
 
     public get(): string {
