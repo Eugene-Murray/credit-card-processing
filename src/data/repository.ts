@@ -30,7 +30,7 @@ export class Repository {
         });
     }
 
-    public update(creditCard: CreditCard): void {
+    public updateBalance(creditCard: CreditCard): void {
         let index = this.CreditCardDB.findIndex((creditCard) => {
             return creditCard.name === creditCard.name;
         });

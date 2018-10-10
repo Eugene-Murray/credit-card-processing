@@ -1,57 +1,40 @@
-// import { expect } from 'chai';
-// import { ValidationService } from './../../services/validationService';
+import { expect } from 'chai';
+import { ValidationService } from '../../services/validationService';
 
+describe('CreditCardService', () => {
+  let validationService;
 
-// describe('ValidationService', () => {
-//   let validationService;
+  beforeEach(() => {
+    validationService = new ValidationService();
+  });
 
-//   beforeEach(() => {
-//     validationService = new ValidationService();
-//   });
+  it('should validCreditCard fail', () => {
+    let creditCard: string = "123";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
 
-// //   [
-// //     {
-// //         "name": "Eugene Murray 1",
-// //         "cardNumber": "123",
-// //         "limit": 2000,
-// //         "balance": 0
-// //     },
-// //     {
-// //         "name": "Eugene Murray 2",
-// //         "cardNumber": "321",
-// //         "limit": 4000,
-// //         "balance": 0
-// //     },
-// //     {
-// //         "name": "Eugene1",
-// //         "cardNumber": "6771771771771771774",
-// //         "limit": 4,
-// //         "balance": 4
-// //     },
-// //     {
-// //         "name": "Eugene1",
-// //         "cardNumber": "5126870832570869",
-// //         "limit": 4,
-// //         "balance": 4
-// //     },
-// //     {
-// //         "name": "Eugene1",
-// //         "cardNumber": "4941202229355074",
-// //         "limit": 4,
-// //         "balance": 4
-// //     },
-// //     {
-// //         "name": "Eugene1",
-// //         "cardNumber": "4941202229355074",
-// //         "limit": 4,
-// //         "balance": 4
-// //     }
-// // ]
+  it('should validCreditCard fail', () => {
+    let creditCard: string = "123-123-123";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
 
+  it('should validCreditCard fail', () => {
+    let creditCard: string = "123#123#123";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
 
-//   // it('should get back all user', () => {
-    
-    
-//   //   expect(validationService.validCreditCard())
-//   // });
-// });
+  it('should validCreditCard 18 digits success', () => {
+    let creditCard: string = "5573610058109036";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
+
+  it('should validCreditCard 19 digits success', () => {
+    let creditCard: string = "123";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
+});

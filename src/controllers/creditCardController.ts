@@ -38,7 +38,6 @@ export class CreditCardController {
 
   @httpPut('/credit/:name')
   public async credit(request: Request): Promise<Balance> {
-    console.warn(request.body);
     return await this.creditCardService.creditAsync(request.params.name, request.body.amount);
   }
 }

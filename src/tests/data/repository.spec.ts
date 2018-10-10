@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-//import { CreditCard } from './../../models/creditCard';
 import { Repository } from './../../data/repository';
 
 describe('Repository', () => {
@@ -25,7 +24,7 @@ describe('Repository', () => {
     });
   });
 
-  it('should find credit card by name', () => {
+  it('should find credit card by name success', () => {
     let name: string = "Eugene Murray 2";
     repository.getByName(name).then((data) => {
       expect(data).to.deep.equal(
@@ -36,5 +35,20 @@ describe('Repository', () => {
         }
       );
     });
+  });
+
+  it('should update balance success', () => {
+    let name: string = "Eugene Murray 2";
+    repository.getByName(name).then((creditCard) => {
+        let oldBalance = creditCard.balance;
+        creditCard.balance += 500;
+        repository.updateBalance(creditCard);
+
+        repository.getByName(name).then((creditCard) => {
+          let newBalance = creditCard.balance;
+          expect(oldBalance).not.equal(newBalance);
+          expect(oldBalance).lessThan(newBalance);
+        });
+      });
   });
 });
