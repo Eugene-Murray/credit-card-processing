@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { ValidationService } from '../../services/validationService';
 
-describe('CreditCardService', () => {
+describe('ValidationService', () => {
   let validationService;
 
   beforeEach(() => {
