@@ -5,7 +5,7 @@ import { CreditCard } from './../models/creditCard';
 @injectable()
 export class Repository {
 
-    private CreditCardDB: Array<CreditCard>;
+    public CreditCardDB: Array<CreditCard>;
 
     constructor() {
         this.CreditCardDB = [];

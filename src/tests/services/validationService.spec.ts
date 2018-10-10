@@ -26,15 +26,15 @@ describe('CreditCardService', () => {
     expect(result).equals(false);
   });
 
-  it('should validCreditCard 18 digits success', () => {
-    let creditCard: string = "5573610058109036";
+  it('should validCreditCard Visa (Debit) digits success', () => {
+    let creditCard: string = "4921818425002311";
     let result = validationService.validCreditCard(creditCard);
-    expect(result).equals(false);
+    expect(result).equals(true);
   });
 
-  it('should validCreditCard 19 digits success', () => {
-    let creditCard: string = "123";
+  it('should validCreditCard Maestro (19 Digit) digits success', () => {
+    let creditCard: string = "6771771771771771774";
     let result = validationService.validCreditCard(creditCard);
-    expect(result).equals(false);
+    expect(result).equals(true);
   });
 });

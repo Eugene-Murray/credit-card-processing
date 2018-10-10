@@ -24,7 +24,7 @@ describe('CreditCardService', () => {
     try {
       creditCardService.add(creditCard);
     } catch (err) {
-      expect(err).equals("Card is not valid");
+      expect(err.message).equals("Card is not valid");
     }
   });
 
