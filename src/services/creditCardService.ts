@@ -34,8 +34,8 @@ export class CreditCardService {
 
                 amount = amount.replace("£", "");  
                 let amountNumber = parseFloat(amount);  
-                let newBalance = creditCard.balance -amountNumber;
-                if(newBalance > creditCard.limit) 
+                let newBalance = creditCard.balance - amountNumber;
+                if(newBalance < creditCard.limit) 
                     reject("new balance would be greater than limit - reject");
 
                     creditCard.balance = newBalance;
@@ -56,7 +56,7 @@ export class CreditCardService {
 
                 amount = amount.replace("£", "");  
                 let amountNumber = parseFloat(amount);  
-                creditCard.balance + amountNumber;
+                creditCard.balance += amountNumber;
                 this.repository.updateBalance(creditCard);
 
                 let remainingBalance = this.calcRemainingBalance(creditCard);
@@ -67,6 +67,6 @@ export class CreditCardService {
     }
 
     private calcRemainingBalance(creditCard: CreditCard) : number {
-        return creditCard.limit - creditCard.balance;
+        return Math.abs(creditCard.limit - creditCard.balance);
     }
 }

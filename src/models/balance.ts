@@ -1,4 +1,4 @@
 export class Balance {
-    constructor(public name: string,
+    constructor(public cardNumber: string,
         public remainingBalance: number) {}
 }

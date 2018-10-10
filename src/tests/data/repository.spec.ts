@@ -13,11 +13,11 @@ describe('Repository', () => {
     repository.getAll().then((data: Array<CreditCard>) => {
       expect(data[0].name).to.equal('Eugene Murray 1');
       expect(data[0].cardNumber).to.equal('2223000010089800');
-      expect(data[0].limit).to.equal(-2000);
+      expect(data[0].limit).to.equal(-1000);
       expect(data[0].balance).to.equal(0);
       expect(data[1].name).to.equal('Eugene Murray 2');
       expect(data[1].cardNumber).to.equal('6771771771771771774');
-      expect(data[1].limit).to.equal(-4000);
+      expect(data[1].limit).to.equal(-1000);
       expect(data[1].balance).to.equal(0);
     }).catch((err) => {
       console.error(err);
@@ -29,7 +29,7 @@ describe('Repository', () => {
     repository.getByName(name).then((data) => {
       expect(data.name).to.equal('Eugene Murray 2');
       expect(data.cardNumber).to.equal('6771771771771771774');
-      expect(data.limit).to.equal(-4000);
+      expect(data.limit).to.equal(-1000);
       expect(data.balance).to.equal(0);
     }).catch((err) => {
       console.error(err);
