@@ -40,8 +40,7 @@ export class CreditCardService {
 
                     creditCard.balance = newBalance;
                     this.repository.updateBalance(creditCard); 
-
-                    //let remainingBalance = creditCard.limit - creditCard.balance;
+                    
                     let remainingBalance = this.calcRemainingBalance(creditCard);
 
                 resolve(new Balance(creditCard.cardNumber, remainingBalance));

@@ -15,6 +15,12 @@ describe('CreditCardService', () => {
   });
 
   it('should validCreditCard fail', () => {
+    let creditCard: string = "eee-123 xxx";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(false);
+  });
+
+  it('should validCreditCard fail', () => {
     let creditCard: string = "123-123-123";
     let result = validationService.validCreditCard(creditCard);
     expect(result).equals(false);
@@ -26,7 +32,13 @@ describe('CreditCardService', () => {
     expect(result).equals(false);
   });
 
-  it('should validCreditCard Visa (Debit) digits success', () => {
+  it('should validCreditCard Visa (Debit) 16 digits with spaces success', () => {
+    let creditCard: string = "4921 8184 2500 2311";
+    let result = validationService.validCreditCard(creditCard);
+    expect(result).equals(true);
+  });
+
+  it('should validCreditCard Visa (Debit) 16 digits success', () => {
     let creditCard: string = "4921818425002311";
     let result = validationService.validCreditCard(creditCard);
     expect(result).equals(true);

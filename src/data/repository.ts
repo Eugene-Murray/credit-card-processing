@@ -38,7 +38,7 @@ export class Repository {
     }
 
     private prePopulate(): void {
-        this.CreditCardDB.push(new CreditCard("Eugene Murray 1", "123", -2000, 0));
-        this.CreditCardDB.push(new CreditCard("Eugene Murray 2", "321", -4000, 0));
+        this.CreditCardDB.push(new CreditCard("Eugene Murray 1", "2223000010089800", -2000, 0));
+        this.CreditCardDB.push(new CreditCard("Eugene Murray 2", "6771771771771771774", -4000, 0));
     }
 }

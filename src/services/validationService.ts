@@ -1,9 +1,13 @@
 import { injectable } from 'inversify';
-//import { CreditCard } from './../models/creditCard';
 
 @injectable()
 export class ValidationService {
     
+    /**
+     * Validate credit card
+     * @param cardNumber 
+     * @returns true if credit card 
+     */
     public validCreditCard(cardNumber: string) : boolean {
         // Accept only digits, dashes or spaces
         if (/[^0-9-\s]+/.test(cardNumber)) return false;
