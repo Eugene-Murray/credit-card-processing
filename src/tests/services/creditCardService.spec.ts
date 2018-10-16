@@ -42,8 +42,8 @@ describe('CreditCardService', () => {
       );
     });
 
-    it('should chargeAsync success', () => {
-      creditCardService.chargeAsync("Eugene Murray", "£200").then((balance) => {
+    it('should debitAsync success', () => {
+      creditCardService.debitAsync("Eugene Murray", "£200").then((balance) => {
         expect(balance).to.deep.equal(
           {
             name: 'Eugene Murray',

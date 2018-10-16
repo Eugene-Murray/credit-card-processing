@@ -26,8 +26,13 @@ export class CreditCardService {
         }
     }
 
-    public chargeAsync(name: string, amount: string): Promise<Balance> {
+    public debitAsync(name: string, amount: string): Promise<Balance> {
         return new Promise<Balance>((resolve, reject) => {
+            if(amount.includes("-"))
+            {
+                reject("amount should be positive");
+            }
+            
             this.repository.getByName(name).then((creditCard) => {
                 if(!creditCard) 
                     reject("credit card not found");
@@ -37,36 +42,35 @@ export class CreditCardService {
                 let newBalance = creditCard.balance - amountNumber;
                 if(newBalance < creditCard.limit) 
                     reject("new balance would be greater than limit - reject");
-
+                    
                     creditCard.balance = newBalance;
                     this.repository.updateBalance(creditCard); 
-                    
-                    let remainingBalance = this.calcRemainingBalance(creditCard);
 
-                resolve(new Balance(creditCard.cardNumber, remainingBalance));
+                resolve(new Balance(creditCard.cardNumber, creditCard.balance));
             });
         });
     }
 
     public creditAsync(name: string, amount: string): Promise<Balance> {
         return new Promise<Balance>((resolve, reject) => {
+            
+            if(amount.includes("-"))
+            {
+                reject("amount should be positive");
+            }
+            
             this.repository.getByName(name).then((creditCard) => {
                 if(!creditCard) 
                     reject("credit card not found");
 
                 amount = amount.replace("£", "");  
                 let amountNumber = parseFloat(amount);  
-                creditCard.balance += amountNumber;
+                let newBalance = creditCard.balance + amountNumber;
+                creditCard.balance = newBalance;
+
                 this.repository.updateBalance(creditCard);
-
-                let remainingBalance = this.calcRemainingBalance(creditCard);
-
-                resolve(new Balance(creditCard.cardNumber, remainingBalance));
+                resolve(new Balance(creditCard.cardNumber, creditCard.balance));
             });
         });
-    }
-
-    private calcRemainingBalance(creditCard: CreditCard) : number {
-        return Math.abs(creditCard.limit - creditCard.balance);
     }
 }

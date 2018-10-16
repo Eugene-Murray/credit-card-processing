@@ -31,8 +31,8 @@ export class Repository {
     }
 
     public updateBalance(creditCard: CreditCard): void {
-        let index = this.CreditCardDB.findIndex((creditCard) => {
-            return creditCard.name === creditCard.name;
+        let index = this.CreditCardDB.findIndex((card) => {
+            return card.name === creditCard.name;
         });
         this.CreditCardDB[index].balance = creditCard.balance;
     }

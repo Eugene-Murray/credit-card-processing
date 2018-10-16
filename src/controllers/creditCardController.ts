@@ -31,9 +31,9 @@ export class CreditCardController {
     
   }
 
-  @httpPut('/charge/:name')
-  public async charge(request: Request): Promise<Balance> {
-    return await this.creditCardService.chargeAsync(request.params.name, request.body.amount);
+  @httpPut('/debit/:name')
+  public async debit(request: Request): Promise<Balance> {
+    return await this.creditCardService.debitAsync(request.params.name, request.body.amount);
   }
 
   @httpPut('/credit/:name')
